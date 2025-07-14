@@ -6,18 +6,27 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+ <div class="neumorphic neumorphic-card">
+
+‹input type="text" 
+placeholder="Username" >
+‹input type="password" class="neumorphic neumorphic-input"
+placeholder="Password">
+‹button class="neumorphic neumorphic-button">Sign In</ button>
+
   <h2>Registrierung</h2>
   <form action="https://blavandlieferserviceeric.onrender.com/register" method="POST">
-    <input type="email" name="email" placeholder="E-Mail" required />
-    <input type="password" name="password" placeholder="Passwort" required />
-    <button type="submit">Registrieren</button>
+    <input type="email" name="email" placeholder="E-Mail" required class="neumorphic neumorphic-input" />
+    <input type="password" name="password" placeholder="Passwort" required class="neumorphic neumorphic-input" />
+    <button type="submit" class="neumorphic neumorphic-button">Registrieren</button>
   </form>
 
   <h2>Login</h2>
   <form action="https://blavandlieferserviceeric.onrender.com/login" method="POST">
-    <input type="email" name="email" placeholder="E-Mail" required />
-    <input type="password" name="password" placeholder="Passwort" required />
-    <button type="submit">Einloggen</button>
+    <input type="email" name="email" placeholder="E-Mail" required class="neumorphic neumorphic-input" />
+    <input type="password" name="password" placeholder="Passwort" required class="neumorphic neumorphic-input" />
+    <button type="submit" class="neumorphic neumorphic-button">Einloggen</button>
   </form>
+  </div>
 </body>
 </html>
