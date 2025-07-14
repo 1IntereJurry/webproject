@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login & Registrierung</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h2>🔐 Registrierung</h2>
+  <form action="/register" method="POST">
+    <input type="email" name="email" placeholder="E-Mail" required />
+    <input type="password" name="password" placeholder="Passwort" required />
+    <button type="submit">Registrieren</button>
+  </form>
+
+  <h2>🧭 Login</h2>
+  <form action="/login" method="POST">
+    <input type="email" name="email" placeholder="E-Mail" required />
+    <input type="password" name="password" placeholder="Passwort" required />
+    <button type="submit">Einloggen</button>
+  </form>
+</body>
+</html>
