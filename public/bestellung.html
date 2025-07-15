@@ -42,28 +42,29 @@
         <input type="text" name="adresse" placeholder="z. B. Mühlenweg 12, 25980 Sylt" required />
       </fieldset>
 
-      <<fieldset>
-  <legend>🥐 Brötchenauswahl</legend>
+ <div class="brotzeile">
+  <label for="kaiser">Kaiserbrötchen:</label>
+  <div class="counter">
+    <button type="button" class="minus">−</button>
+    <input type="number" name="kaiser" id="kaiser" value="0" min="0" />
+    <button type="button" class="plus">+</button>
+  </div>
+  
+    <label for="schoko">Schokobrötchen:</label>
+  <div class="counter">
+    <button type="button" class="minus">−</button>
+    <input type="number" name="kaiser" id="kaiser" value="0" min="0" />
+    <button type="button" class="plus">+</button>
+  </div>
+  
+    <label for="vollkorn">Vollkornbrötchen:</label>
+  <div class="counter">
+    <button type="button" class="minus">−</button>
+    <input type="number" name="kaiser" id="kaiser" value="0" min="0" />
+    <button type="button" class="plus">+</button>
+  </div>
 
-  <label>Kaiserbrötchen:</label>
-  <select name="kaiser">
-    <option value="0">0</option>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-  </select>
 
-  <label>Vollkornbrötchen:</label>
-  <select name="vollkorn">
-    <option value="0">0</option>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-  </select>
 
   <label>Schokobrötchen:</label>
   <select name="schoko">
