@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brötchen bestellen</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="topbar neumorphic">
+    <div class="brand">Blåvand Lieferservice</div>
+    <button id="menu-toggle" class="menu-button">☰</button>
+  </header>
+
+  <nav id="mobile-menu" class="dropdown-menu neumorphic-inset">
+    <ul>
+      <li><a href="index.html">🏠 Start</a></li>
+      <li><a href="login.html">🔐 Login</a></li>
+      <li><a href="bestellung.html">📦 Bestellung</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h1 style="text-align: center;">Unsere Brötchenauswahl</h1>
+    <div class="product-list">
+      <div class="product-card neumorphic">
+        <h2>Kaiserbrötchen</h2>
+        <p>Knusprig, goldgelb und klassisch – perfekt fürs Frühstück!</p>
+        <p><strong>Preis:</strong> €0,65</p>
+      </div>
+
+      <div class="product-card neumorphic">
+        <h2>Vollkornbrötchen</h2>
+        <p>Mit vielen Körnern und kräftigem Geschmack – gut für die Figur 😉</p>
+        <p><strong>Preis:</strong> €0,85</p>
+      </div>
+
+      <div class="product-card neumorphic">
+        <h2>Schokobrötchen</h2>
+        <p>Für Naschkatzen – mit echten Schokostückchen.</p>
+        <p><strong>Preis:</strong> €1,10</p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    document.getElementById('menu-toggle').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('active');
+    });
+  </script>
+
+</body>
+</html>
