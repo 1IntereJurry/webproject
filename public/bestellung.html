@@ -32,61 +32,55 @@
     </iframe>
   </div>
 
-  <!-- 🧾 Neues Bestellformular -->
-  <div class="neumorphic neumorphic-card">
-    <h2>Brötchen bestellen</h2>
-    <form action="/bestellung" method="POST" enctype="multipart/form-data">
+ <form id="bestellformular" action="/bestellung" method="POST">
 
-      <fieldset>
-        <legend>👤 Lieferadresse</legend>
-        <input type="text" name="adresse" placeholder="z. B. Mühlenweg 12, 25980 Sylt" required />
-      </fieldset>
+  <fieldset>
+    <legend>🥐 Brötchenauswahl</legend>
+    <div class="brotzeile">
+      <label>Kaiserbrötchen (€0,65):</label>
+      <div class="counter">
+        <button type="button" class="minus">−</button>
+        <input type="number" name="kaiser" value="0" min="0" />
+        <button type="button" class="plus">+</button>
+      </div>
+    </div>
+    <div class="brotzeile">
+      <label>Vollkornbrötchen (€0,85):</label>
+      <div class="counter">
+        <button type="button" class="minus">−</button>
+        <input type="number" name="vollkorn" value="0" min="0" />
+        <button type="button" class="plus">+</button>
+      </div>
+    </div>
+    <div class="brotzeile">
+      <label>Schokobrötchen (€1,10):</label>
+      <div class="counter">
+        <button type="button" class="minus">−</button>
+        <input type="number" name="schoko" value="0" min="0" />
+        <button type="button" class="plus">+</button>
+      </div>
+    </div>
 
- <div class="brotzeile">
-  <label for="kaiser">Kaiserbrötchen:</label>
-  <div class="counter">
-    <button type="button" class="minus">−</button>
-    <input type="number" name="kaiser" id="kaiser" value="0" min="0" />
-    <button type="button" class="plus">+</button>
-  </div>
-  
-    <label for="schoko">Schokobrötchen:</label>
-  <div class="counter">
-    <button type="button" class="minus">−</button>
-    <input type="number" name="kaiser" id="kaiser" value="0" min="0" />
-    <button type="button" class="plus">+</button>
-  </div>
-  
-    <label for="vollkorn">Vollkornbrötchen:</label>
-  <div class="counter">
-    <button type="button" class="minus">−</button>
-    <input type="number" name="kaiser" id="kaiser" value="0" min="0" />
-    <button type="button" class="plus">+</button>
-  </div>
+    <p id="preisvorschau">🧾 Gesamt: €0,00</p>
+  </fieldset>
 
+  <fieldset>
+    <legend>📦 Lieferoption</legend>
+    <label>
+      <input type="checkbox" id="einmalig" name="einmalig" checked />
+      Einmalige Lieferung aktivieren
+    </label>
 
+    <div id="zeitraum" style="display: none;">
+      <label>Startdatum:</label>
+      <input type="date" name="startdatum" id="startdatum" />
+      <label>Enddatum:</label>
+      <input type="date" name="enddatum" id="enddatum" />
+    </div>
+  </fieldset>
 
-
-
-      <fieldset>
-        <legend>📆 Lieferzeitraum</legend>
-        <label>Startdatum:</label>
-        <input type="date" name="startdatum" required />
-
-        <label>Enddatum:</label>
-        <input type="date" name="enddatum" />
-        <small>Lass das Feld leer für Einmalbestellung</small>
-      </fieldset>
-
-      <fieldset>
-        <legend>📸 Ablageort (optional)</legend>
-        <label>Foto hochladen:</label>
-        <input type="file" name="ablagebild" accept="image/*" />
-      </fieldset>
-
-      <button type="submit">🛒 Bestellung abschicken</button>
-    </form>
-  </div>
+  <button type="submit">🛒 Bestellung abschicken</button>
+</form>
   
   <script>
   document.querySelectorAll('.counter').forEach(group => {
