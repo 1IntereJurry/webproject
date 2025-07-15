@@ -6,30 +6,29 @@ const path = require('path');
 const fs = require('fs');
 
 const app = express();
+const PORT = process.env.PORT || 3000;
+
+// Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
-  secret: 'geheim123',
+  secret: 'sichere-geheime-session123',
   resave: false,
   saveUninitialized: false
 }));
 
-const USERS_PATH = './users.json';
+// User-Daten werden lokal in JSON-Datei gespeichert
+const USERS_FILE = path.join(__dirname, 'users.json');
 
 function loadUsers() {
-  return fs.existsSync(USERS_PATH) ? JSON.parse(fs.readFileSync(USERS_PATH)) : {};
+  if (!fs.existsSync(USERS_FILE)) return {};
+  return JSON.parse(fs.readFileSync(USERS_FILE));
 }
 
 function saveUsers(users) {
-  fs.writeFileSync(USERS_PATH, JSON.stringify(users, null, 2));
+  fs.writeFileSync(USERS_FILE, JSON.stringify(users, null, 2));
 }
-
-<script>
-  document.getElementById('menu-toggle').addEventListener('click', () => {
-    document.getElementById('mobile-menu').classList.toggle('active');
-  });
-</script>
 
 // Registrierung
 app.post('/register', async (req, res) => {
@@ -37,11 +36,11 @@ app.post('/register', async (req, res) => {
   const users = loadUsers();
 
   if (users[email]) {
-    return res.send('⚠️ E-Mail bereits vergeben.');
+    return res.send('⚠️ Diese E-Mail ist bereits registriert.');
   }
 
-  const hash = await bcrypt.hash(password, 10);
-  users[email] = { email, passwordHash: hash };
+  const hashed = await bcrypt.hash(password, 10);
+  users[email] = { email, passwordHash: hashed };
   saveUsers(users);
   res.send('✅ Registrierung erfolgreich!');
 });
@@ -53,7 +52,7 @@ app.post('/login', async (req, res) => {
   const user = users[email];
 
   if (!user) {
-    return res.send('❌ Benutzer nicht gefunden.');
+    return res.send('❌ Kein Benutzer gefunden.');
   }
 
   const match = await bcrypt.compare(password, user.passwordHash);
@@ -61,20 +60,20 @@ app.post('/login', async (req, res) => {
     req.session.user = email;
     res.redirect('/profil');
   } else {
-    res.send('❌ Passwort falsch.');
+    res.send('❌ Passwort ist falsch.');
   }
 });
 
 // Geschützte Profilseite
 app.get('/profil', (req, res) => {
   if (!req.session.user) {
-    return res.redirect('/');
+    return res.redirect('/login.html');
   }
 
   res.send(`
-    <h1>👤 Willkommen ${req.session.user}</h1>
-    <p>Das ist deine persönliche Profilseite.</p>
-    <form action="/logout" method="POST">
+    <h1>👋 Willkommen, ${req.session.user}</h1>
+    <p>Dies ist deine persönliche Profilseite.</p>
+    <form method="POST" action="/logout">
       <button>Logout</button>
     </form>
   `);
@@ -87,4 +86,7 @@ app.post('/logout', (req, res) => {
   });
 });
 
-app.listen(3000, () => console.log('🚀 Server läuft auf Port 3000'));
+// Start
+app.listen(PORT, () => {
+  console.log(`🚀 Server läuft auf Port ${PORT}`);
+});
