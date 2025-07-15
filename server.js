@@ -1,24 +1,28 @@
 const express = require('express');
+const session = require('express-session');
 const bcrypt = require('bcrypt');
 const bodyParser = require('body-parser');
-const fs = require('fs');
 const path = require('path');
+const fs = require('fs');
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'));
 
+app.use(session({
+  secret: 'geheim123',
+  resave: false,
+  saveUninitialized: false
+}));
+
 const USERS_PATH = './users.json';
 
-// Hilfsfunktion: Benutzer speichern
-function saveUsers(users) {
-  fs.writeFileSync(USERS_PATH, JSON.stringify(users, null, 2));
+function loadUsers() {
+  return fs.existsSync(USERS_PATH) ? JSON.parse(fs.readFileSync(USERS_PATH)) : {};
 }
 
-// Benutzer laden
-function loadUsers() {
-  if (!fs.existsSync(USERS_PATH)) return {};
-  return JSON.parse(fs.readFileSync(USERS_PATH));
+function saveUsers(users) {
+  fs.writeFileSync(USERS_PATH, JSON.stringify(users, null, 2));
 }
 
 // Registrierung
@@ -27,13 +31,12 @@ app.post('/register', async (req, res) => {
   const users = loadUsers();
 
   if (users[email]) {
-    return res.send('⚠️ Diese E-Mail ist bereits registriert.');
+    return res.send('⚠️ E-Mail bereits vergeben.');
   }
 
   const hash = await bcrypt.hash(password, 10);
   users[email] = { email, passwordHash: hash };
   saveUsers(users);
-
   res.send('✅ Registrierung erfolgreich!');
 });
 
@@ -44,15 +47,38 @@ app.post('/login', async (req, res) => {
   const user = users[email];
 
   if (!user) {
-    return res.send('🔐 Account nicht gefunden. Prüfe E-Mail & Passwort.');
+    return res.send('❌ Benutzer nicht gefunden.');
   }
 
   const match = await bcrypt.compare(password, user.passwordHash);
   if (match) {
-    res.send('🎉 Login erfolgreich! Willkommen zurück.');
+    req.session.user = email;
+    res.redirect('/profil');
   } else {
-    res.send('❌ Falsches Passwort oder E-Mail.');
+    res.send('❌ Passwort falsch.');
   }
 });
 
-app.listen(3000, () => console.log('🌍 Server läuft auf http://localhost:3000'));
+// Geschützte Profilseite
+app.get('/profil', (req, res) => {
+  if (!req.session.user) {
+    return res.redirect('/');
+  }
+
+  res.send(`
+    <h1>👤 Willkommen ${req.session.user}</h1>
+    <p>Das ist deine persönliche Profilseite.</p>
+    <form action="/logout" method="POST">
+      <button>Logout</button>
+    </form>
+  `);
+});
+
+// Logout
+app.post('/logout', (req, res) => {
+  req.session.destroy(() => {
+    res.redirect('/');
+  });
+});
+
+app.listen(3000, () => console.log('🚀 Server läuft auf Port 3000'));
