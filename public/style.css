@@ -1,3 +1,62 @@
+/* Seitenleiste – Grundstil */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 220px;
+  height: 100vh;
+  background: #e0e5ec;
+  padding: 20px;
+  box-shadow: 10px 0 20px #a3b1c6;
+  transition: transform 0.3s ease;
+}
+
+/* Button oben rechts für Mobilgeräte */
+.menu-button {
+  display: none;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Hauptinhalt hat linken Abstand */
+main {
+  margin-left: 240px;
+  padding: 20px;
+}
+
+/* 📱 Responsive Verhalten ab max-width 768px */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    width: 200px;
+    z-index: 1000;
+  }
+
+  .sidebar.active {
+    transform: translateX(0);
+  }
+
+  .menu-button {
+    display: block;
+  }
+
+  main {
+    margin-left: 0;
+    padding: 20px;
+  }
+
+  header {
+    height: 60px;
+    background: #f0f0f0;
+    position: relative;
+  }
+}
+
 /* Basis für Neumorphic-Elemente */
 .neumorphic,
 .neumorphic-inset {
