@@ -24,6 +24,67 @@
   box-sizing: border-box;
 }
 
+/* 🔝 Obere Leiste */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: #e0e5ec;
+  box-shadow: 5px 5px 10px #a3b1c6, -5px -5px 10px #ffffff;
+  border-radius: 0 0 20px 20px;
+  position: relative;
+  z-index: 1000;
+}
+
+/* 🌟 Firmenname links */
+.brand {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+/* ☰ Menübutton rechts */
+.menu-button {
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* 📂 Ausklapp-Menü (nur mobil sichtbar) */
+.dropdown-menu {
+  display: none;
+  background: #e0e5ec;
+  box-shadow: inset 5px 5px 10px #a3b1c6, -5px -5px 10px #ffffff;
+  border-radius: 0 0 20px 20px;
+  padding: 1rem 2rem;
+  position: relative;
+}
+
+.dropdown-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown-menu li {
+  margin: 0.5rem 0;
+}
+
+.dropdown-menu a {
+  text-decoration: none;
+  color: #007acc;
+  font-weight: bold;
+}
+
+/* 📱 Menü-Logik für Mobilgeräte */
+@media (max-width: 768px) {
+  .dropdown-menu.active {
+    display: block;
+  }
+}
+
 /* Seitenleiste links */
 .sidebar {
   position: fixed;
