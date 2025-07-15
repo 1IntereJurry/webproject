@@ -172,3 +172,32 @@ select {
   border-radius: 8px;
   border: none;
 }
+
+.brotzeile {
+  margin-bottom: 1.2rem;
+}
+
+.counter {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.counter button {
+  padding: 0.4rem 0.8rem;
+  background: #e0e5ec;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  box-shadow: 5px 5px 10px #a3b1c6, -5px -5px 10px #ffffff;
+  cursor: pointer;
+}
+
+.counter input {
+  width: 50px;
+  text-align: center;
+  padding: 0.4rem;
+  border-radius: 8px;
+  border: none;
+  font-size: 1rem;
+}
