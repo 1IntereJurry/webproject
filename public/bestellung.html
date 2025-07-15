@@ -21,23 +21,29 @@
     </ul>
   </nav>
 
-  <main>
-    <!-- 🗺️ Karte mit Filiale -->
-    <div class="map-container neumorphic-card">
-      <h2>Unsere Filiale</h2>
-      <iframe
-        src="https://maps.google.com/maps?q=Ilsigvej%2021,%20Blokhus,%20Dänemark&t=&z=15&ie=UTF8&iwloc=&output=embed"
-        width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy">
-      </iframe>
-    </div>
+  
+<main>
+  <!-- 📍 Karte -->
+  <div class="neumorphic neumorphic-card">
+    <h2>Unsere Filiale</h2>
+    <iframe
+      src="https://maps.google.com/maps?q=Ilsigvej%2021,%20Blokhus,%20Dänemark&t=&z=15&ie=UTF8&iwloc=&output=embed"
+      width="100%" height="300" style="border:0;" allowfullscreen loading="lazy">
+    </iframe>
+  </div>
 
-    <!-- 🧾 Bestellformular -->
-    <div class="neumorphic neumorphic-card">
-      <h2>Brötchen bestellen</h2>
-      <form action="/bestellung" method="POST" enctype="multipart/form-data">
-        <label>Lieferadresse:</label>
-        <input type="text" name="adresse" required />
+  <!-- 🧾 Neues Bestellformular -->
+  <div class="neumorphic neumorphic-card">
+    <h2>Brötchen bestellen</h2>
+    <form action="/bestellung" method="POST" enctype="multipart/form-data">
 
+      <fieldset>
+        <legend>👤 Lieferadresse</legend>
+        <input type="text" name="adresse" placeholder="z. B. Mühlenweg 12, 25980 Sylt" required />
+      </fieldset>
+
+      <fieldset>
+        <legend>🥐 Brötchenauswahl</legend>
         <label>Kaiserbrötchen:</label>
         <input type="number" name="kaiser" min="0" value="0" />
 
@@ -46,27 +52,33 @@
 
         <label>Schokobrötchen:</label>
         <input type="number" name="schoko" min="0" value="0" />
+      </fieldset>
 
-        <label>Lieferdauer:</label>
-        <select name="laufzeit">
-          <option value="einmalig">Einmalige Lieferung</option>
-          <option value="1woche">1 Woche</option>
-          <option value="1monat">1 Monat</option>
-        </select>
+      <fieldset>
+        <legend>📆 Lieferzeitraum</legend>
+        <label>Startdatum:</label>
+        <input type="date" name="startdatum" required />
 
-        <label>Bild vom Ablageort (optional):</label>
+        <label>Enddatum:</label>
+        <input type="date" name="enddatum" />
+        <small>Lass das Feld leer für Einmalbestellung</small>
+      </fieldset>
+
+      <fieldset>
+        <legend>📸 Ablageort (optional)</legend>
+        <label>Foto hochladen:</label>
         <input type="file" name="ablagebild" accept="image/*" />
+      </fieldset>
 
-        <button type="submit">Bestellung abschicken</button>
-      </form>
-    </div>
-  </main>
+      <fieldset>
+        <legend>✅ Sicherheit</legend>
+        <label>
+          <input type="checkbox" name="keineBot" required />
+          Ich bin kein Bot – ich habe echten Hunger auf Brötchen!
+        </label>
+      </fieldset>
 
-  <script>
-    document.getElementById('menu-toggle').addEventListener('click', () => {
-      document.getElementById('mobile-menu').classList.toggle('active');
-    });
-  </script>
-
-</body>
-</html>
+      <button type="submit">🛒 Bestellung abschicken</button>
+    </form>
+  </div>
+</main>
