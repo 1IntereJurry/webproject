@@ -96,4 +96,23 @@
       <button type="submit">🛒 Bestellung abschicken</button>
     </form>
   </div>
+  
+  <script>
+  document.querySelectorAll('.counter').forEach(group => {
+    const minusBtn = group.querySelector('.minus');
+    const plusBtn = group.querySelector('.plus');
+    const input = group.querySelector('input');
+
+    minusBtn.addEventListener('click', () => {
+      const current = parseInt(input.value) || 0;
+      if (current > 0) input.value = current - 1;
+    });
+
+    plusBtn.addEventListener('click', () => {
+      const current = parseInt(input.value) || 0;
+      input.value = current + 1;
+    });
+  });
+</script>
+  
 </main>
