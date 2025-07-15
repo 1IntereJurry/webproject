@@ -1,1 +1,39 @@
-hd
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blåvand Lieferservice</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="topbar neumorphic">
+    <div class="brand">Blåvand Lieferservice</div>
+    <button id="menu-toggle" class="menu-button">☰</button>
+  </header>
+
+  <nav id="mobile-menu" class="dropdown-menu neumorphic-inset">
+    <ul>
+      <li><a href="index.html">🏠 Start</a></li>
+      <li><a href="login.html">🔐 Login</a></li>
+      <li><a href="#">📦 Bestellung</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="neumorphic neumorphic-card">
+      <h1>Willkommen bei Blåvand Lieferservice 🥖</h1>
+      <p>Wir liefern dir die Brötchen frisch und zuverlässig direkt vor die Haustür – einfach online bestellen!</p>
+      <a href="login.html" class="order-button">Brötchen bestellen</a>
+    </div>
+  </main>
+
+  <script>
+    document.getElementById('menu-toggle').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('active');
+    });
+  </script>
+
+</body>
+</html>
