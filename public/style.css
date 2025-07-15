@@ -1,4 +1,4 @@
-/* 📌 Basis für Neumorphic-Elemente */
+/* Neumorphic Basis */
 .neumorphic,
 .neumorphic-inset {
   background: #e0e5ec;
@@ -10,41 +10,28 @@
   box-shadow: inset 10px 10px 20px #a3b1c6, -10px -10px 20px #ffffff;
 }
 
-/* Karte */
-.neumorphic-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem;
-  max-width: 320px;
-  width: 100%;
-  margin: 1rem auto;
-  text-align: center;
-  box-sizing: border-box;
-}
-
-/* 🔝 Obere Leiste */
+/* Topbar */
 .topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 0 1.5rem;
   background: #e0e5ec;
-  box-shadow: 5px 5px 10px #a3b1c6, -5px -5px 10px #ffffff;
-  border-radius: 0 0 20px 20px;
-  position: relative;
   z-index: 1000;
+  box-shadow: 5px 5px 10px #a3b1c6, -5px -5px 10px #ffffff;
 }
 
-/* 🌟 Firmenname links */
 .brand {
   font-size: 1.2rem;
   font-weight: bold;
   color: #333;
 }
 
-/* ☰ Menübutton rechts */
 .menu-button {
   font-size: 1.8rem;
   background: none;
@@ -52,14 +39,19 @@
   cursor: pointer;
 }
 
-/* 📂 Ausklapp-Menü (nur mobil sichtbar) */
+/* Dropdown-Menü */
 .dropdown-menu {
   display: none;
-  background: #e0e5ec;
-  box-shadow: inset 5px 5px 10px #a3b1c6, -5px -5px 10px #ffffff;
-  border-radius: 0 0 20px 20px;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 100%;
   padding: 1rem 2rem;
-  position: relative;
+  box-sizing: border-box;
+}
+
+.dropdown-menu.active {
+  display: block;
 }
 
 .dropdown-menu ul {
@@ -69,7 +61,7 @@
 }
 
 .dropdown-menu li {
-  margin: 0.5rem 0;
+  margin-bottom: 1rem;
 }
 
 .dropdown-menu a {
@@ -78,75 +70,26 @@
   font-weight: bold;
 }
 
-/* 📱 Menü-Logik für Mobilgeräte */
-@media (max-width: 768px) {
-  .dropdown-menu.active {
-    display: block;
-  }
-}
-
-/* Seitenleiste links */
-.sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 220px;
-  background: #e0e5ec;
-  box-shadow: 10px 0 20px #a3b1c6, -10px 0 20px #ffffff;
-  padding: 2rem 1rem;
-  box-sizing: border-box;
-  z-index: 1000;
-}
-
-.sidebar nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.sidebar nav li {
-  margin-bottom: 1rem;
-}
-
-.sidebar nav a {
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
-}
-
-/* Menübutton für Handy */
-.menu-button {
-  display: none;
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  font-size: 2rem;
-  background: #e0e5ec;
-  border: none;
-  border-radius: 12px;
-  padding: 0.5rem 1rem;
-  box-shadow: 5px 5px 10px #a3b1c6, -5px -5px 10px #ffffff;
-  cursor: pointer;
-  z-index: 1100;
-}
-
-/* Hauptinhalt */
-main {
-  margin-left: 240px;
+/* Karte / Inhalt */
+.neumorphic-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 2rem;
+  max-width: 320px;
+  width: 100%;
+  margin: 5rem auto 2rem;
+  text-align: center;
 }
 
 /* Formular */
 form {
-  margin-bottom: 2rem;
   background: white;
   padding: 1.5rem;
   border-radius: 8px;
+  margin-bottom: 2rem;
   box-sizing: border-box;
-  max-width: 400px;
   width: 100%;
-  margin: 0 auto;
 }
 
 input {
@@ -166,49 +109,31 @@ button {
   border-radius: 4px;
   width: 100%;
   font-size: 1rem;
-  box-sizing: border-box;
   cursor: pointer;
+  box-sizing: border-box;
 }
 
-/* 📱 Responsives Verhalten */
+/* Brötchen bestellen Button */
+.order-button {
+  display: inline-block;
+  padding: 0.8rem 1.2rem;
+  background-color: #007acc;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  margin-top: 1rem;
+  box-shadow: 5px 5px 10px #a3b1c6, -5px -5px 10px #ffffff;
+  transition: transform 0.2s ease;
+}
+
+.order-button:hover {
+  transform: scale(1.05);
+}
+
+/* Responsive Regeln */
 @media (max-width: 768px) {
-  .sidebar {
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-    width: 200px;
-  }
-
-  .sidebar.active {
-    transform: translateX(0);
-  }
-
-  .menu-button {
-    display: block;
-  }
-
-  main {
-    margin-left: 0;
-    padding: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  body {
-    padding: 1rem;
-  }
-
-  form,
   .neumorphic-card {
-    padding: 1rem;
-    max-width: 100%;
-  }
-
-  input,
-  button {
-    font-size: 1rem;
-  }
-
-  button {
-    padding: 0.9rem;
+    margin-top: 6rem;
   }
 }
