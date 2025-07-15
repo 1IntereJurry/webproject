@@ -1,40 +1,61 @@
-/* Seitenleiste – Grundstil */
+/* — NEU: Seitenleiste — */
 .sidebar {
   position: fixed;
   top: 0;
   left: 0;
-  width: 220px;
   height: 100vh;
+  width: 220px;
   background: #e0e5ec;
-  padding: 20px;
-  box-shadow: 10px 0 20px #a3b1c6;
-  transition: transform 0.3s ease;
+  box-shadow: 10px 0 20px #a3b1c6, -10px 0 20px #ffffff;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+  z-index: 1000;
 }
 
-/* Button oben rechts für Mobilgeräte */
+.sidebar nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar nav li {
+  margin-bottom: 1rem;
+}
+
+.sidebar nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+/* — NEU: Menübutton für Mobilgeräte — */
 .menu-button {
   display: none;
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  font-size: 1.5rem;
-  background: none;
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2rem;
+  background: #e0e5ec;
   border: none;
+  border-radius: 12px;
+  padding: 0.5rem 1rem;
+  box-shadow: 5px 5px 10px #a3b1c6, -5px -5px 10px #ffffff;
   cursor: pointer;
+  z-index: 1100;
 }
 
-/* Hauptinhalt hat linken Abstand */
+/* Inhalt verschieben, wenn Seitenleiste aktiv ist */
 main {
   margin-left: 240px;
-  padding: 20px;
+  padding: 2rem;
 }
 
-/* 📱 Responsive Verhalten ab max-width 768px */
+/* — Responsive Regeln für Mobilgeräte — */
 @media (max-width: 768px) {
   .sidebar {
     transform: translateX(-100%);
+    transition: transform 0.3s ease;
     width: 200px;
-    z-index: 1000;
   }
 
   .sidebar.active {
@@ -47,83 +68,11 @@ main {
 
   main {
     margin-left: 0;
-    padding: 20px;
-  }
-
-  header {
-    height: 60px;
-    background: #f0f0f0;
-    position: relative;
+    padding: 1rem;
   }
 }
 
-/* Basis für Neumorphic-Elemente */
-.neumorphic,
-.neumorphic-inset {
-  background: #e0e5ec;
-  border-radius: 20px;
-  box-shadow: 10px 10px 20px #a3b1c6, -10px -10px 20px #ffffff;
-}
-
-.neumorphic-inset {
-  box-shadow: inset 10px 10px 20px #a3b1c6, -10px -10px 20px #ffffff;
-}
-
-/* Karte passt sich Bildschirmbreite an */
-.neumorphic-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem;
-  max-width: 320px;
-  width: 100%;
-  margin: 1rem auto;
-  text-align: center;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: sans-serif;
-  background: #f0f0f0;
-  padding: 2rem;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-form {
-  margin-bottom: 2rem;
-  background: white;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-sizing: border-box;
-  max-width: 400px;
-  width: 100%;
-  margin: 0 auto;
-}
-
-input {
-  display: block;
-  margin-bottom: 1rem;
-  padding: 0.6rem;
-  width: 100%;
-  font-size: 1rem;
-  box-sizing: border-box;
-}
-
-button {
-  padding: 0.8rem 1rem;
-  background-color: #007acc;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  width: 100%;
-  font-size: 1rem;
-  box-sizing: border-box;
-  cursor: pointer;
-}
-
-/* Responsives Verhalten bei kleineren Bildschirmen */
+/* Bestehendes responsives Styling bleibt erhalten */
 @media (max-width: 480px) {
   body {
     padding: 1rem;
