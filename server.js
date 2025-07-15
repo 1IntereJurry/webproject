@@ -25,6 +25,12 @@ function saveUsers(users) {
   fs.writeFileSync(USERS_PATH, JSON.stringify(users, null, 2));
 }
 
+<script>
+  document.getElementById('menu-toggle').addEventListener('click', () => {
+    document.getElementById('mobile-menu').classList.toggle('active');
+  });
+</script>
+
 // Registrierung
 app.post('/register', async (req, res) => {
   const { email, password } = req.body;
