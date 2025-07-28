@@ -147,7 +147,7 @@ html {
   background: #e0e5ec;
   box-shadow: 4px 4px 8px #a3b1c6, -4px -4px 8px #ffffff;
   font-size: 1rem;
-  color: #333;
+  color: #333; 
   outline: none;
   transition: box-shadow 0.2s;
 }
