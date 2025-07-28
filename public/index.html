@@ -34,28 +34,10 @@
       <a href="login.html" class="order-button">Brötchen bestellen</a>
     </div>
   </main>
+  <footer class="footer neumorphic">
+    <p>&copy; 2023 Blåvand Lieferservice. Alle Rechte vorbehalten.</p>
 
-  <script>
-    // Mobile Menü Toggle
-    const menuToggle = document.getElementById('menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-    menuToggle.addEventListener('click', () => {
-      const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
-      menuToggle.setAttribute('aria-expanded', !expanded);
-      mobileMenu.classList.toggle('active');
-    });
+  <script src="script.js"></script>
 
-    // Menü schließt bei Klick außerhalb
-    document.addEventListener('click', (e) => {
-      if (
-        !menuToggle.contains(e.target) &&
-        !mobileMenu.contains(e.target) &&
-        mobileMenu.classList.contains('active')
-      ) {
-        menuToggle.setAttribute('aria-expanded', 'false');
-        mobileMenu.classList.remove('active');
-      }
-    });
-  </script>
 </body>
 </html>
