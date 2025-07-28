@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brötchen bestellen</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar neumorphic">
+    <div class="brand">Blåvand Lieferservice</div>
+    <nav class="topbar-nav" aria-label="Hauptnavigation">
+      <a href="index.html">Start</a>
+      <a href="login.html">Login</a>
+      <a href="order.html">Order now</a>
+    </nav>
+    <button id="menu-toggle" class="menu-button" aria-label="Menü öffnen" aria-controls="mobile-menu" aria-expanded="false">
+      <span aria-hidden="true">☰</span>
+    </button>
+  </header>
+
+  <nav id="mobile-menu" class="dropdown-menu neumorphic-inset" aria-label="Mobile Navigation">
+    <ul>
+      <li><a href="index.html">Start</a></li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="order.html">Order now</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <!-- map -->
+    <div class="neumorphic neumorphic-card">
+      <h2>Unsere Filiale</h2>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d904.2378734366979!2d8.134308664792808!3d55.554899599193405!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x464ac2bf5d58be95%3A0xda534d20e99b056b!2sBl%C3%A5vand%20Bageri!5e0!3m2!1sde!2sde!4v1753704406187!5m2!1sde!2sde"
+        width="100%" height="300" style="border:0;" allowfullscreen loading="lazy">
+      </iframe>
+    </div>
+
+   <form id="bestellformular" action="/bestellung" method="POST">
+
+    <fieldset>
+      <legend>Brötchenauswahl</legend>
+      <div class="brotzeile">
+        <label>Kaiserbrötchen (€0,65):</label>
+        <div class="counter">
+          <button type="button" class="minus">−</button>
+          <input type="number" name="kaiser" value="0" min="0" />
+          <button type="button" class="plus">+</button>
+        </div>
+      </div>
+      <div class="brotzeile">
+        <label>Vollkornbrötchen (€0,85):</label>
+        <div class="counter">
+          <button type="button" class="minus">−</button>
+          <input type="number" name="vollkorn" value="0" min="0" />
+          <button type="button" class="plus">+</button>
+        </div>
+      </div>
+      <div class="brotzeile">
+        <label>Schokobrötchen (€1,10):</label>
+        <div class="counter">
+          <button type="button" class="minus">−</button>
+          <input type="number" name="schoko" value="0" min="0" />
+          <button type="button" class="plus">+</button>
+        </div>
+      </div>
+
+      <p id="Preisvorschau">Gesamt: €0,00</p>
+    </fieldset>
+
+    <fieldset>
+      <legend>Lieferoption</legend>
+      <label>
+        <input type="checkbox" id="einmalig" name="einmalig" checked />
+        Einmalige Lieferung aktivieren
+      </label>
+
+      <div id="zeitraum" style="display: none;">
+        <label>Startdatum:</label>
+        <input type="date" name="startdate" id="startdate" />
+        <label>Enddatum:</label>
+        <input type="date" name="enddate" id="enddate" />
+      </div>
+    </fieldset>
+
+    <button type="submit">Bestellung abschicken</button>
+  </form>
+    
+    <script>
+    document.querySelectorAll('.counter').forEach(group => {
+      const minusBtn = group.querySelector('.minus');
+      const plusBtn = group.querySelector('.plus');
+      const input = group.querySelector('input');
+
+      minusBtn.addEventListener('click', () => {
+        const current = parseInt(input.value) || 0;
+        if (current > 0) input.value = current - 1;
+      });
+
+      plusBtn.addEventListener('click', () => {
+        const current = parseInt(input.value) || 0;
+        input.value = current + 1;
+      });
+    });
+  </script>
+
+  <script>
+    // Mengensteuerung
+    document.querySelectorAll('.counter').forEach(group => {
+      const minus = group.querySelector('.minus');
+      const plus = group.querySelector('.plus');
+      const input = group.querySelector('input');
+
+      minus.addEventListener('click', () => {
+        const val = parseInt(input.value) || 0;
+        if (val > 0) input.value = val - 1;
+        updateGesamtpreis();
+      });
+
+      plus.addEventListener('click', () => {
+        const val = parseInt(input.value) || 0;
+        input.value = val + 1;
+        updateGesamtpreis();
+      });
+
+      input.addEventListener('change', updateGesamtpreis);
+    });
+
+    // Preisberechnung
+    function updateGesamtpreis() {
+      const kaiser = parseInt(document.querySelector('input[name="kaiser"]').value) || 0;
+      const vollkorn = parseInt(document.querySelector('input[name="vollkorn"]').value) || 0;
+      const schoko = parseInt(document.querySelector('input[name="schoko"]').value) || 0;
+
+      const preis = (kaiser * 0.65) + (vollkorn * 0.85) + (schoko * 1.10);
+      document.getElementById('preisvorschau').textContent = `🧾 Gesamt: €${preis.toFixed(2)}`;
+    }
+
+    // Lieferoption steuern
+    const einmaligCheckbox = document.getElementById('einmalig');
+    const zeitraumFeld = document.getElementById('zeitraum');
+    const startDatum = document.getElementById('startdatum');
+    const endDatum = document.getElementById('enddatum');
+
+    einmaligCheckbox.addEventListener('change', () => {
+      if (einmaligCheckbox.checked) {
+        zeitraumFeld.style.display = 'none';
+        startDatum.removeAttribute('required');
+        endDatum.removeAttribute('required');
+      } else {
+        zeitraumFeld.style.display = 'block';
+        startDatum.setAttribute('required', 'true');
+        endDatum.setAttribute('required', 'true');
+      }
+    });
+
+    // Mindestmenge prüfen
+    document.getElementById('bestellformular').addEventListener('submit', function(e) {
+      const total = ['kaiser', 'vollkorn', 'schoko']
+        .map(name => parseInt(document.querySelector(`input[name="${name}"]`).value) || 0)
+        .reduce((a, b) => a + b, 0);
+      if (total < 1) {
+        e.preventDefault();
+        alert("Du musst mindestens 1 Brötchen auswählen.");
+      }
+    });
+
+    updateGesamtpreis(); // Initialer Preis
+  </script>
+
+  <script>
+    // Mengen-Buttons aktivieren (wie vorher)
+    document.querySelectorAll('.counter').forEach(group => {
+      const minusBtn = group.querySelector('.minus');
+      const plusBtn = group.querySelector('.plus');
+      const input = group.querySelector('input');
+
+      minusBtn.addEventListener('click', () => {
+        const current = parseInt(input.value) || 0;
+        if (current > 0) input.value = current - 1;
+      });
+
+      plusBtn.addEventListener('click', () => {
+        const current = parseInt(input.value) || 0;
+        input.value = current + 1;
+      });
+    });
+
+    // Mindestbestellmenge prüfen
+    document.querySelector('form').addEventListener('submit', function(event) {
+      const total =
+        parseInt(document.querySelector('input[name="kaiser"]').value || 0) +
+        parseInt(document.querySelector('input[name="vollkorn"]').value || 0) +
+        parseInt(document.querySelector('input[name="schoko"]').value || 0);
+
+      if (total < 1) {
+        event.preventDefault(); // Formular stoppen
+        alert("Bitte wähle mindestens 1 Brötchen aus.");
+      }
+    });
+  </script>
+    
+  </main>
+
+  <script>
+    // Mobile Menü Toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuToggle.addEventListener('click', () => {
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', !expanded);
+      mobileMenu.classList.toggle('active');
+    });
+
+    // Menü schließt bei Klick außerhalb
+    document.addEventListener('click', (e) => {
+      if (
+        !menuToggle.contains(e.target) &&
+        !mobileMenu.contains(e.target) &&
+        mobileMenu.classList.contains('active')
+      ) {
+        menuToggle.setAttribute('aria-expanded', 'false');
+        mobileMenu.classList.remove('active');
+      }
+    });
+  </script>
+
+  <script>
+    document.getElementById('bestellformular').addEventListener('submit', function(e) {
+  const start = document.getElementById('startdate').value;
+  const ende = document.getElementById('enddate').value;
+  const today = new Date().toISOString().split('T')[0];
+
+  if (startdate < today) {
+    alert('Der Starttermin darf nicht in der Vergangenheit liegen.');
+    e.preventDefault();
+    return;
+  }
+  if (enddate <= startdate) {
+    alert('Der Endtermin muss nach dem Starttermin liegen.');
+    e.preventDefault();
+    return;
+  }
+});
+  </script>
+</body>
+</html>

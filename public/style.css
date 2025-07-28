@@ -1,0 +1,289 @@
+/* Basis-Reset und Box-Sizing */
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+/* Neumorphismus-Basis */
+.neumorphic,
+.neumorphic-inset {
+  background: #e0e5ec;
+  border-radius: 20px;
+  box-shadow: 10px 10px 20px #a3b1c6, -10px -10px 20px #ffffff;
+}
+.neumorphic-inset {
+  box-shadow: inset 10px 10px 20px #a3b1c6, -10px -10px 20px #ffffff;
+}
+
+/* Topbar */
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
+  background: #e0e5ec;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  box-shadow: 0 2px 8px #a3b1c6;
+  min-height: 60px;
+  border-left: 2px solid #c0c8d6;
+  border-right: 2px solid #c0c8d6;
+}
+
+.brand {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #333;
+  letter-spacing: 0.02em;
+}
+
+.menu-button {
+  font-size: 2rem;
+  color: #333;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  transition: color 0.2s;
+}
+.menu-button:hover {
+  color: #007acc;
+}
+
+/* Desktop-Navigation */
+.topbar-nav {
+  display: flex;
+  gap: 1.5em;
+  align-items: center;
+}
+.topbar-nav a {
+  text-decoration: none;
+  color: #007acc;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 0.3em 0.7em;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s;
+}
+.topbar-nav a:hover,
+.dropdown-menu a:hover {
+  background: #d0eaff;
+  color: #005b99;
+}
+
+/* Mobile Navigation */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 100vw;
+  padding: 1rem 1.5rem;
+  box-sizing: border-box;
+}
+.dropdown-menu.active {
+  display: block;
+}
+.dropdown-menu ul {
+  list-style: none;
+}
+.dropdown-menu li {
+  margin-bottom: 1rem;
+}
+.dropdown-menu a {
+  text-decoration: none;
+  color: #007acc;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+/* Card */
+.neumorphic-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  max-width: 480px;
+  width: 100%;
+  margin: 6rem auto 2rem;
+  text-align: center;
+}
+
+/* Button */
+.order-button {
+  display: inline-block;
+  padding: 0.8rem 1.2rem;
+  background-color: #007acc;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  margin-top: 1.5rem;
+  box-shadow: 5px 5px 10px #a3b1c6, -5px -5px 10px #ffffff;
+  transition: transform 0.2s, background 0.2s;
+}
+.order-button:hover {
+  transform: scale(1.05);
+  background: #005b99;
+}
+
+/* Formularelemente Neumorphismus-Stil */
+.neumorphic-input {
+  width: 100%;
+  padding: 0.7em 1em;
+  margin: 0.5em 0;
+  border: none;
+  border-radius: 12px;
+  background: #e0e5ec;
+  box-shadow: 4px 4px 8px #a3b1c6, -4px -4px 8px #ffffff;
+  font-size: 1rem;
+  color: #333;
+  outline: none;
+  transition: box-shadow 0.2s;
+}
+.neumorphic-input:focus {
+  box-shadow: 0 0 0 2px #007acc, 4px 4px 8px #a3b1c6, -4px -4px 8px #ffffff;
+}
+
+.neumorphic-button {
+  padding: 0.7em 1.5em;
+  border: none;
+  border-radius: 12px;
+  background: #e0e5ec;
+  color: #007acc;
+  font-weight: bold;
+  font-size: 1rem;
+  box-shadow: 4px 4px 8px #a3b1c6, -4px -4px 8px #ffffff;
+  cursor: pointer;
+  margin-top: 1em;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.neumorphic-button:hover, .neumorphic-button:focus {
+  background: #d0eaff;
+  color: #005b99;
+  box-shadow: 2px 2px 4px #a3b1c6, -2px -2px 4px #ffffff;
+}
+
+/* Für das Formular selbst */
+form {
+  width: 100%;
+  max-width: 400px;
+  margin: 1.5em auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.5em;
+}
+
+fieldset {
+  border: none;
+  margin: 1em 0;
+  padding: 0;
+}
+
+legend {
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+.brotzeile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.7em;
+}
+
+.counter {
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+}
+
+.counter input[type="number"] {
+  width: 3em;
+  text-align: center;
+  border-radius: 8px;
+  border: none;
+  background: #e0e5ec;
+  box-shadow: 2px 2px 4px #a3b1c6, -2px -2px 4px #ffffff;
+  font-size: 1rem;
+  padding: 0.2em 0.4em;
+}
+
+.counter button {
+  background: #e0e5ec;
+  border: none;
+  border-radius: 50%;
+  width: 2em;
+  height: 2em;
+  font-size: 1.2em;
+  color: #007acc;
+  box-shadow: 2px 2px 4px #a3b1c6, -2px -2px 4px #ffffff;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.counter button:hover {
+  background: #d0eaff;
+  color: #005b99;
+}
+
+/* Responsive Anpassungen */
+@media (max-width: 900px) {
+  .topbar {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .neumorphic-card {
+    margin-top: 7rem;
+    padding: 1.2rem;
+  }
+}
+@media (max-width: 700px) {
+  .topbar-nav {
+    display: none;
+  }
+  .menu-button {
+    display: flex;
+  }
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100vw;
+    padding: 1rem 0.5rem;
+    z-index: 1001;
+  }
+  .dropdown-menu.active {
+    display: block;
+  }
+  .neumorphic-card {
+    margin-top: 6.5rem;
+    max-width: 98vw;
+  }
+  .topbar {
+    border-left: 1px solid #c0c8d6;
+    border-right: 1px solid #c0c8d6;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
+
+/* Verhindert horizontales Scrollen */
+body, html {
+  max-width: 100vw;
+  overflow-x: hidden;
+  background: #f5f7fa;
+  min-height: 100vh;
+}
+
