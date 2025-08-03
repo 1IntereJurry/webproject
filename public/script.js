@@ -1,5 +1,5 @@
-// --- Mobile Menü Toggle ---
 document.addEventListener('DOMContentLoaded', () => {
+  // --- Mobile menu toggle ---
   const menuToggle = document.getElementById('menu-toggle');
   const mobileMenu = document.getElementById('mobile-menu');
   if (menuToggle && mobileMenu) {
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- Counter-Buttons & Preisvorschau (nur falls vorhanden) ---
+  // --- Counter buttons & price preview ---
   if (document.querySelectorAll('.counter').length > 0) {
     document.querySelectorAll('.counter').forEach(group => {
       const minus = group.querySelector('.minus');
@@ -31,75 +31,75 @@ document.addEventListener('DOMContentLoaded', () => {
       minus.addEventListener('click', () => {
         const val = parseInt(input.value) || 0;
         if (val > 0) input.value = val - 1;
-        updateGesamtpreis();
+        updatePricePreview();
       });
 
       plus.addEventListener('click', () => {
         const val = parseInt(input.value) || 0;
         input.value = val + 1;
-        updateGesamtpreis();
+        updatePricePreview();
       });
 
-      input.addEventListener('change', updateGesamtpreis);
+      input.addEventListener('change', updatePricePreview);
     });
 
-    function updateGesamtpreis() {
+    function updatePricePreview() {
       const kaiser = parseInt(document.querySelector('input[name="kaiser"]')?.value) || 0;
       const vollkorn = parseInt(document.querySelector('input[name="vollkorn"]')?.value) || 0;
       const schoko = parseInt(document.querySelector('input[name="schoko"]')?.value) || 0;
-      const preis = (kaiser * 0.65) + (vollkorn * 0.85) + (schoko * 1.10);
-      const vorschau = document.getElementById('Preisvorschau') || document.getElementById('preisvorschau');
-      if (vorschau) vorschau.textContent = `🧾 Gesamt: €${preis.toFixed(2)}`;
+      const price = (kaiser * 0.65) + (vollkorn * 0.85) + (schoko * 1.10);
+      const preview = document.getElementById('pricePreview');
+      if (preview) preview.textContent = `🧾 Total: €${price.toFixed(2)}`;
     }
-    updateGesamtpreis();
+    updatePricePreview();
   }
 
-  // --- Lieferoptionen (nur falls vorhanden) ---
-  const einmaligCheckbox = document.getElementById('einmalig');
-  const zeitraumFeld = document.getElementById('zeitraum');
-  const startDatum = document.getElementById('startdate');
-  const endDatum = document.getElementById('enddate');
-  if (einmaligCheckbox && zeitraumFeld && startDatum && endDatum) {
-    einmaligCheckbox.addEventListener('change', () => {
-      if (einmaligCheckbox.checked) {
-        zeitraumFeld.style.display = 'none';
-        startDatum.removeAttribute('required');
-        endDatum.removeAttribute('required');
+  // --- Delivery options ---
+  const oneTimeCheckbox = document.getElementById('oneTime');
+  const periodField = document.getElementById('period');
+  const startDate = document.getElementById('startDate');
+  const endDate = document.getElementById('endDate');
+  if (oneTimeCheckbox && periodField && startDate && endDate) {
+    oneTimeCheckbox.addEventListener('change', () => {
+      if (oneTimeCheckbox.checked) {
+        periodField.style.display = 'none';
+        startDate.removeAttribute('required');
+        endDate.removeAttribute('required');
       } else {
-        zeitraumFeld.style.display = 'block';
-        startDatum.setAttribute('required', 'true');
-        endDatum.setAttribute('required', 'true');
+        periodField.style.display = 'block';
+        startDate.setAttribute('required', 'true');
+        endDate.setAttribute('required', 'true');
       }
     });
   }
 
-  // --- Formular-Validierung (nur falls vorhanden) ---
-  const bestellformular = document.getElementById('bestellformular');
-  if (bestellformular) {
-    bestellformular.addEventListener('submit', function(e) {
-      // Mindestmenge prüfen
+  // --- Form validation ---
+  const orderForm = document.getElementById('orderForm');
+  if (orderForm) {
+    orderForm.addEventListener('submit', function(e) {
+      // Minimum quantity check
       const total = ['kaiser', 'vollkorn', 'schoko']
         .map(name => parseInt(document.querySelector(`input[name="${name}"]`)?.value) || 0)
         .reduce((a, b) => a + b, 0);
       if (total < 1) {
         e.preventDefault();
-        alert("Du musst mindestens 1 Brötchen auswählen.");
+        alert("You must select at least 1 bread roll.");
         return;
       }
 
-      // Zeitraum-Prüfung (nur wenn Abo gewählt)
-      if (einmaligCheckbox && !einmaligCheckbox.checked) {
-        const start = startDatum.value;
-        const ende = endDatum.value;
+      // Date range check (only if subscription)
+      if (oneTimeCheckbox && !oneTimeCheckbox.checked) {
+        const start = startDate.value;
+        const end = endDate.value;
         const today = new Date().toISOString().split('T')[0];
 
         if (start < today) {
-          alert('Der Starttermin darf nicht in der Vergangenheit liegen.');
+          alert('The start date cannot be in the past.');
           e.preventDefault();
           return;
         }
-        if (ende <= start) {
-          alert('Der Endtermin muss nach dem Starttermin liegen.');
+        if (end <= start) {
+          alert('The end date must be after the start date.');
           e.preventDefault();
           return;
         }
@@ -107,14 +107,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
- const container = document.getElementById('container');
-const registerBtn = document.getElementById('register');
-const loginBtn = document.getElementById('login');
+  // --- Auth Card Switcher (if used on login.html) ---
+  const authCard = document.getElementById('auth-card');
+  const switchToRegister = document.getElementById('switch-to-register');
+  const switchToLogin = document.getElementById('switch-to-login');
 
-registerBtn.addEventListener('click', () => {
-    container.classList.add("active");
-});
-
-loginBtn.addEventListener('click', () => {
-    container.classList.remove("active");
+  if (authCard && switchToRegister && switchToLogin) {
+    switchToRegister.addEventListener('click', () => {
+      authCard.classList.add('slide-register');
+    });
+    switchToLogin.addEventListener('click', () => {
+      authCard.classList.remove('slide-register');
+    });
+  }
 });

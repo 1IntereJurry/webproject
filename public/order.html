@@ -37,55 +37,55 @@
       </iframe>
     </div>
 
-   <form id="bestellformular" action="/bestellung" method="POST">
+    <form id="orderForm" action="/bestellung" method="POST">
 
-    <fieldset>
-      <legend>Brötchenauswahl</legend>
-      <div class="brotzeile">
-        <label>Kaiserbrötchen (€0,65):</label>
-        <div class="counter">
-          <button type="button" class="minus">−</button>
-          <input type="number" name="kaiser" value="0" min="0" />
-          <button type="button" class="plus">+</button>
+      <fieldset>
+        <legend>Bread selection</legend>
+        <div class="breadRow">
+          <label>Kaiserbrötchen (€0,65):</label>
+          <div class="counter">
+            <button type="button" class="minus">−</button>
+            <input type="number" name="kaiser" value="0" min="0" />
+            <button type="button" class="plus">+</button>
+          </div>
         </div>
-      </div>
-      <div class="brotzeile">
-        <label>Vollkornbrötchen (€0,85):</label>
-        <div class="counter">
-          <button type="button" class="minus">−</button>
-          <input type="number" name="vollkorn" value="0" min="0" />
-          <button type="button" class="plus">+</button>
+        <div class="breadRow">
+          <label>Vollkornbrötchen (€0,85):</label>
+          <div class="counter">
+            <button type="button" class="minus">−</button>
+            <input type="number" name="vollkorn" value="0" min="0" />
+            <button type="button" class="plus">+</button>
+          </div>
         </div>
-      </div>
-      <div class="brotzeile">
-        <label>Schokobrötchen (€1,10):</label>
-        <div class="counter">
-          <button type="button" class="minus">−</button>
-          <input type="number" name="schoko" value="0" min="0" />
-          <button type="button" class="plus">+</button>
+        <div class="breadRow">
+          <label>Schokobrötchen (€1,10):</label>
+          <div class="counter">
+            <button type="button" class="minus">−</button>
+            <input type="number" name="schoko" value="0" min="0" />
+            <button type="button" class="plus">+</button>
+          </div>
         </div>
-      </div>
 
-      <p id="Preisvorschau">Gesamt: €0,00</p>
-    </fieldset>
+        <p id="pricePreview">Total: €0,00</p>
+      </fieldset>
 
-    <fieldset>
-      <legend>Lieferoption</legend>
-      <label>
-        <input type="checkbox" id="einmalig" name="einmalig" checked />
-        Einmalige Lieferung aktivieren
-      </label>
+      <fieldset>
+        <legend>Delivery option</legend>
+        <label>
+          <input type="checkbox" id="oneTime" name="oneTime" checked />
+          One-time delivery
+        </label>
 
-      <div id="zeitraum" style="display: none;">
-        <label>Startdatum:</label>
-        <input type="date" name="startdate" id="startdate" />
-        <label>Enddatum:</label>
-        <input type="date" name="enddate" id="enddate" />
-      </div>
-    </fieldset>
+        <div id="period" style="display: none;">
+          <label>Start date:</label>
+          <input type="date" name="startDate" id="startDate" />
+          <label>End date:</label>
+          <input type="date" name="endDate" id="endDate" />
+        </div>
+      </fieldset>
 
-    <button type="submit">Bestellung abschicken</button>
-  </form>
+      <button type="submit">Submit order</button>
+    </form>
   </main>
     
   <script src="script.js"></script>
