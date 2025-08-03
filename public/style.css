@@ -132,6 +132,7 @@ html {
   box-shadow: 5px 5px 10px #a3b1c6, -5px -5px 10px #ffffff;
   transition: transform 0.2s, background 0.2s;
 }
+
 .order-button:hover {
   transform: scale(1.05);
   background: #005b99;
@@ -235,6 +236,90 @@ legend {
 .counter button:hover {
   background: #d0eaff;
   color: #005b99;
+}
+
+/* Card Switcher Animation */
+.auth-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 6rem auto 2rem;
+  perspective: 1200px;
+}
+
+.auth-card {
+  width: 100%;
+  height: 420px;
+  position: relative;
+  transition: transform 0.7s cubic-bezier(.77,0,.18,1);
+  transform-style: preserve-3d;
+}
+
+.auth-card.slide-register {
+  transform: translateX(-100%);
+}
+
+.auth-panel {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0; left: 0;
+  background: #e0e5ec;
+  border-radius: 20px;
+  box-shadow: 10px 10px 20px #a3b1c6, -10px -10px 20px #ffffff;
+  padding: 2rem;
+  box-sizing: border-box;
+  transition: opacity 0.4s;
+}
+
+.auth-panel-login {
+  z-index: 2;
+  left: 0;
+  opacity: 1;
+  transition: opacity 0.4s;
+}
+
+.auth-card.slide-register .auth-panel-login {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.auth-panel-register {
+  z-index: 1;
+  left: 100%;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.auth-card.slide-register .auth-panel-register {
+  left: 0;
+  opacity: 1;
+  z-index: 3;
+  pointer-events: auto;
+}
+
+.switch-btn {
+  margin-top: 1.5em;
+  background: none;
+  border: none;
+  color: #007acc;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1em;
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .auth-wrapper {
+    max-width: 98vw;
+  }
+  .auth-half {
+    padding: 1rem;
+  }
+}
+@media (max-width: 500px) {
+  .auth-container { max-width: 98vw; }
+  .auth-card { height: 440px; }
+  .auth-panel { padding: 1rem; }
 }
 
 /* Responsive Anpassungen */

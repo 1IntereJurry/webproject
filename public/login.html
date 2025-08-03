@@ -28,20 +28,27 @@
   </nav>
 
   <main>
-    <div class="neumorphic neumorphic-card">
-      <h2>Registrierung</h2>
-      <form action="https://blavandlieferserviceeric.onrender.com/register" method="POST">
-        <input type="email" name="email" placeholder="E-Mail" required class="neumorphic-input" />
-        <input type="password" name="password" placeholder="Passwort" required class="neumorphic-input" />
-        <button type="submit" class="neumorphic-button">Registrieren</button>
-      </form>
-
-      <h2>Login</h2>
-      <form action="https://blavandlieferserviceeric.onrender.com/login" method="POST">
-        <input type="email" name="email" placeholder="E-Mail" required class="neumorphic-input" />
-        <input type="password" name="password" placeholder="Passwort" required class="neumorphic-input" />
-        <button type="submit" class="neumorphic-button">Einloggen</button>
-      </form>
+    <div class="auth-container">
+      <div class="auth-card" id="auth-card">
+        <div class="auth-panel auth-panel-login">
+          <h2>Login</h2>
+          <form id="login-form" action="https://blavandlieferserviceeric.onrender.com/login" method="POST">
+            <input type="email" name="email" placeholder="E-Mail" required class="neumorphic-input" />
+            <input type="password" name="password" placeholder="Passwort" required class="neumorphic-input" />
+            <button type="submit" class="neumorphic-button">Einloggen</button>
+          </form>
+          <button type="button" id="switch-to-register" class="switch-btn">Noch kein Konto? Registrieren</button>
+        </div>
+        <div class="auth-panel auth-panel-register">
+          <h2>Registrierung</h2>
+          <form id="register-form" action="https://blavandlieferserviceeric.onrender.com/register" method="POST">
+            <input type="email" name="email" placeholder="E-Mail" required class="neumorphic-input" />
+            <input type="password" name="password" placeholder="Passwort" required class="neumorphic-input" />
+            <button type="submit" class="neumorphic-button">Registrieren</button>
+          </form>
+          <button type="button" id="switch-to-login" class="switch-btn">Schon registriert? Login</button>
+        </div>
+      </div>
     </div>
   </main>
 

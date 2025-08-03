@@ -106,4 +106,18 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // Card-Switcher Animation
+  const authCard = document.getElementById('auth-card');
+  const switchToRegister = document.getElementById('switch-to-register');
+  const switchToLogin = document.getElementById('switch-to-login');
+
+  if (authCard && switchToRegister && switchToLogin) {
+    switchToRegister.addEventListener('click', () => {
+      authCard.classList.add('slide-register');
+    });
+    switchToLogin.addEventListener('click', () => {
+      authCard.classList.remove('slide-register');
+    });
+  }
 });
