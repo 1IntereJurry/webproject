@@ -41,7 +41,18 @@
                 <span>or use your email for registeration</span>
                 <input type="text" placeholder="Name">
                 <input type="email" placeholder="Email">
-                <input type="password" placeholder="Password">
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  required
+                  minlength="12"
+                  pattern="^(?=.*[0-9])(?=.*[!@#$%^&*?])(?=.*[A-Za-z])[A-Za-z0-9!@#$%^&*?]{12,}$"
+                  title="Mindestens 12 Zeichen, mindestens 1 Zahl und 1 der erlaubten Sonderzeichen: ! @ # $ % ^ & * ?"
+                />
+                <small>
+                  Password must be at least 12 characters, contain at least one number and one of these special characters: <b>! @ # $ % ^ & * ?</b>
+                </small>
                 <button>Sign Up</button>
             </form>
         </div>

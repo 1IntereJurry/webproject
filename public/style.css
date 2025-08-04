@@ -20,6 +20,7 @@ html {
   box-sizing: border-box;
   scroll-behavior: smooth;
 }
+
 *, *:before, *:after {
   box-sizing: inherit;
   margin: 0;
@@ -33,6 +34,7 @@ html {
   border-radius: 20px;
   box-shadow: 10px 10px 20px #a3b1c6, -10px -10px 20px #ffffff;
 }
+
 .neumorphic-inset {
   box-shadow: inset 10px 10px 20px #a3b1c6, -10px -10px 20px #ffffff;
 }
@@ -73,6 +75,7 @@ html {
   align-items: center;
   transition: color 0.2s;
 }
+
 .menu-button:hover {
   color: #007acc;
 }
@@ -333,6 +336,7 @@ legend {
     padding: 1rem;
   }
 }
+
 @media (max-width: 500px) {
   .auth-container { max-width: 98vw; }
   .auth-card { height: 440px; }
@@ -350,6 +354,7 @@ legend {
     padding: 1.2rem;
   }
 }
+
 @media (max-width: 700px) {
   .topbar-nav {
     display: none;
@@ -529,8 +534,17 @@ body, html {
 }
 
 .toggle-panel {
+  display: none;
   text-align: center;
   padding: 0 2rem;
+}
+
+.container:not(.active-panel) .toggle-panel.toggle-right {
+  display: block;
+}
+
+.container.active-panel .toggle-panel.toggle-left {
+  display: block;
 }
 
 .hidden {

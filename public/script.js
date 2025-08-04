@@ -135,4 +135,18 @@ document.addEventListener('DOMContentLoaded', () => {
       container.classList.remove("active-panel");
     });
   }
+
+  // --- Register form validation ---
+  const registerForm = document.getElementById('register-form');
+  if (registerForm) {
+    registerForm.addEventListener('submit', function(e) {
+      const password = registerForm.querySelector('input[name="password"]').value;
+      // Nur erlaubte Sonderzeichen: !@#$%^&*?
+      const strong = /^(?=.*[0-9])(?=.*[!@#$%^&*?])(?=.*[A-Za-z])[A-Za-z0-9!@#$%^&*?]{12,}$/;
+      if (!strong.test(password)) {
+        e.preventDefault();
+        alert('Password must be at least 12 characters, contain at least one number and one of these special characters: ! @ # $ % ^ & * ?');
+      }
+    });
+  }
 });
