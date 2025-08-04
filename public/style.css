@@ -460,16 +460,15 @@ body, html {
 
 /* Panel Umschalter für Login/SignUp */
 .container {
-  position: relative;
-  width: 800px;
-  max-width: 100%;
-  min-height: 500px;
-  margin: 6rem auto 2rem;
   background: #e0e5ec;
-  border-radius: 20px;
+  border-radius: 30px;
   box-shadow: 10px 10px 20px #a3b1c6, -10px -10px 20px #ffffff;
+  position: relative;
   overflow: hidden;
-  transition: 0.6s;
+  width: 768px;
+  max-width: 100%;
+  min-height: 480px;
+  margin: 6rem auto 2rem;
   display: flex;
 }
 
@@ -478,17 +477,21 @@ body, html {
   top: 0;
   height: 100%;
   transition: all 0.6s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 50%;
+  background: #fff;
 }
 
 .sign-in {
   left: 0;
-  width: 50%;
   z-index: 2;
 }
 
 .sign-up {
   left: 0;
-  width: 50%;
   opacity: 0;
   z-index: 1;
 }
@@ -497,12 +500,14 @@ body, html {
   opacity: 1;
   z-index: 5;
   transform: translateX(100%);
+  transition: all 0.6s ease-in-out;
 }
 
 .container.active-panel .sign-in {
   opacity: 0;
   z-index: 1;
   transform: translateX(100%);
+  transition: all 0.6s ease-in-out;
 }
 
 .toggle-container {
@@ -538,4 +543,42 @@ body, html {
   cursor: pointer;
   margin-top: 1em;
   transition: background 0.2s, color 0.2s;
+}
+
+/* Neumorphismus für Inputs und Buttons */
+.form-container input,
+.form-container button {
+  border-radius: 12px;
+  border: none;
+  background: #e0e5ec;
+  box-shadow: 4px 4px 8px #a3b1c6, -4px -4px 8px #ffffff;
+  font-size: 1rem;
+  color: #333;
+  outline: none;
+  margin: 8px 0;
+  padding: 10px 15px;
+  width: 100%;
+  transition: box-shadow 0.2s;
+}
+
+.form-container input:focus {
+  box-shadow: 0 0 0 2px #007acc, 4px 4px 8px #a3b1c6, -4px -4px 8px #ffffff;
+}
+
+.form-container button {
+  background: #007acc;
+  color: #fff;
+  font-weight: bold;
+  margin-top: 1em;
+  box-shadow: 4px 4px 8px #a3b1c6, -4px -4px 8px #ffffff;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  text-transform: uppercase;
+  padding: 10px 45px;
+}
+
+.form-container button:hover {
+  background: #005b99;
+  color: #fff;
+  box-shadow: 2px 2px 4px #a3b1c6, -2px -2px 4px #ffffff;
 }
